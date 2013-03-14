@@ -12,6 +12,16 @@ def seq5(m):
     return 1
     
 class Seq5Test(unittest.TestCase):
+
+    def test_menor_5(self):
+        m = [
+            [1,1,1,1],
+            [1,1,1,1],
+            [1,1,1,1],
+            [1,1,1,1],
+            ]
+        self.assertEquals(seq5(m), -1)
+    
     def test_maior_igual_5(self):
         m = [
             [1,1,1,1,1],
