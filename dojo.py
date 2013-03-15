@@ -1,5 +1,15 @@
 import unittest
 
+def transposicao(m):
+    t = len(m)
+    m2 = []
+    for i in range(0,t):
+        m2.setdefault(i,[])
+        
+    for i in range(0,t):
+        for j in range(0,t):
+            m2[j].append(m[i][j])
+    return m2
 
 def produto_linha(linha):
     
@@ -37,8 +47,12 @@ def seq5(m):
         prod_linha = produto_linha(linha)
         if prod_linha > maior_produto:
             maior_produto = prod_linha
-        
-    
+
+    for linha in transposicao(m):
+        prod_linha = produto_linha(linha)
+        if prod_linha > maior_produto:
+            maior_produto = prod_linha
+            
     return maior_produto
     
 class Seq5Test(unittest.TestCase):
@@ -63,6 +77,28 @@ class Seq5Test(unittest.TestCase):
             [1,1,1,1,1,1]
             ]
         self.assertEquals(seq5(m), 20)
+
+    def test_maior_produto_linha2_5_consecutivos(self):
+        m = [
+            [2,1,2,1,1,1],
+            [2,1,1,5,1,10],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1]
+            ]
+        self.assertEquals(seq5(m), 50)
+
+    def test_maior_produto_coluna1_5_consecutivos(self):
+        m = [
+            [2,1,2,1,1,1],
+            [2,1,1,5,1,10],
+            [1,1,1,1,1,10],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1]
+            ]
+        self.assertEquals(seq5(m), 100)         
 
     def test_menor_5(self):
         m = [
