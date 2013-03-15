@@ -2,10 +2,25 @@ import unittest
 
 
 def produto_linha(linha):
-    p = 1
-    for i in linha:
-        p *= i
-    return p
+    
+    result = []
+    ini = 0
+    fim = 4
+    
+    while fim <= len(linha):
+        lista_aux = linha[ini:fim]
+        p = 1
+        for i in lista_aux:
+            p *= i
+        result.append(p)
+        ini +=1
+        fim +=1
+        
+    maior = 0
+    for i in result:
+        if i > maior:
+            maior = i
+    return maior
 
 def seq5(m):
     linhas = len(m)
@@ -38,6 +53,17 @@ class Seq5Test(unittest.TestCase):
             ]
         self.assertEquals(seq5(m), 10)
 
+    def test_maior_produto_linha1_5_consecutivos(self):
+        m = [
+            [2,1,2,1,1,10],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1],
+            [1,1,1,1,1,1]
+            ]
+        self.assertEquals(seq5(m), 20)
+
     def test_menor_5(self):
         m = [
             [1,1,1,1],
@@ -64,6 +90,16 @@ class Seq5Test(unittest.TestCase):
             [1,1,1,1,1],
             [1,1,1,1,1],
             [1,1,1,1,1,1]
+            ]
+        self.assertEquals(seq5(m), -1)
+
+        m = [
+            [1,1,1,1,1],
+            [1,1,1,1,1],
+            [1,1,1,1,1],
+            [1,1,1,1,1],
+            [1,1,1,1,1],
+            [1,1,1,1,1]
             ]
         self.assertEquals(seq5(m), -1)
     
